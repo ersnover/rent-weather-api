@@ -4,7 +4,7 @@ const router = express.Router()
 const wf = require('../functions/weatherFunctions')
 const cityLimit = 10
 
-// combo?rent=[integer]&rcompare=[less / greater]&weather=[temp / rain / snow]&wcompare=[less / greater]&value=[degF / dayspermonth]&date=YYYY-MM-DD&period=[day / month]
+// combo?rent=[integer]&rcompare=[less / greater]&weather=[tempHi / tempLo / rain / snow]&wcompare=[less / greater]&value=[degF / dayspermonth]&date=YYYY-MM-DD&period=[day / month]
 
 router.get('/', async (req,res) => {
     let rcompare = req.query.rcompare
