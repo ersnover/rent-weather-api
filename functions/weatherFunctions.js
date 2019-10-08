@@ -2,8 +2,7 @@ const rp = require('request-promise')
 const dsApiKey = process.env.DARK_SKY_KEY || null
 const googleApiKey = process.env.GOOGLE_KEY || null
 
-const numberOfQueries = 10
-const infoString = `Averages are displayed in Fahrenheit (temperature), and inches (snow/rain). Average daily values are collected over the past ${numberOfQueries} years, while average monthly values are based on the same month last year`
+const infoString = (numberOfQueries) => `Averages are displayed in Fahrenheit (temperature), and inches (snow/rain). Average daily values are collected over the past ${numberOfQueries} years, while average monthly values are based on the most recent occurrence of the specified month`
 
 // convert city, state to latitutde and longitude using Google Maps geocoding API
 const fetchCoordinates = async (city, state) => {
@@ -16,7 +15,9 @@ const fetchCoordinates = async (city, state) => {
     let geodata = await rp(options)
 
     if (geodata.err) {res.json({error: geodata.err})}
-    else {
+    else if (!geodata.results[0]){
+        return {error: 'Invalid City/State'}
+    } else {
         let coords = {
             lat: geodata.results[0].geometry.location.lat,
             lng: geodata.results[0].geometry.location.lng
@@ -41,34 +42,36 @@ const fetchDarkSky = async (coords, date) => {
 }
 
 // generate date strings for a single day over last X years (starts with previous year to avoid generating a future date)
-const dayTypeArray = (dateString) => {
+const dayTypeArray = (dateString, points) => {
     let splitDate = dateString.split('-')
     let year = parseInt(splitDate)
     
-    let dates = [...Array(numberOfQueries).keys()].map(i => {
+    let dates = [...Array(points).keys()].map(i => {
         // generate date strings for past 10 years
-        return `${year - 1 - i}-${splitDate[1]}-${splitDate[2]}`
+        return `${year - i}-${splitDate[1]}-${splitDate[2]}`
     })
     return dates
 }
 
-// generate date strings spread over one month from previous year
-const monthTypeArray = (dateString) => {
+// generate date strings spread over one month from previous year with points = x
+const monthTypeArray = (dateString, points) => {
     let splitDate = dateString.split('-')
-    let daySpread = (30/numberOfQueries).toFixed(0)
+    let daySpread = (30/points).toFixed(0)
     
-    let dates = [...Array(numberOfQueries).keys()].map(i => {
+    let dates = [...Array(points).keys()].map(i => {
         // generate date strings over standard month
-        return `${parseInt(splitDate[0]) - 1}-${splitDate[1]}-${('0' + (1 + i * daySpread)).slice(-2)}`
+        return `${parseInt(splitDate[0])}-${splitDate[1]}-${('0' + (1 + i * daySpread)).slice(-2)}`
     })
     return dates
 }
 
 // takes an array of daily weather objects and calculates average high and low temperature
-const calcAvgTemp = dataArray => {
+const calcAvgTemp = (dataArray, numberOfQueries) => {
     let temps = dataArray.reduce((obj, dayWeather) => {
+        
         obj.totalHigh += dayWeather.daily.data[0].temperatureHigh
         obj.totalLow += dayWeather.daily.data[0].temperatureLow
+        console.log(obj)
         return obj
     }, {
         totalHigh: 0,
@@ -77,14 +80,13 @@ const calcAvgTemp = dataArray => {
     
     let tempReport = {
         avgHigh: temps.totalHigh / numberOfQueries,
-        avgLow: temps.totalLow / numberOfQueries,
-        info: infoString
+        avgLow: temps.totalLow / numberOfQueries
     }
     return tempReport
 }
 
 // takes an array of daily weather objects and calculates total rainfall and average rain / day
-const calcAvgRain = dataArray => {
+const calcAvgRain = (dataArray, numberOfQueries) => {
     let totalRain = dataArray.reduce((total, dayWeather) => {
         
         let hourReport = dayWeather.hourly.data
@@ -100,12 +102,12 @@ const calcAvgRain = dataArray => {
         return total + dayRain
     }, 0)
     
-    let rainReport = {totalRainfall: totalRain, avgRain: totalRain / numberOfQueries, info: infoString}
+    let rainReport = {totalRainfall: totalRain, avgRain: totalRain / numberOfQueries, info: infoString(numberOfQueries)}
     return rainReport
 }
 
 // takes an array of daily weather objects and calculates total snowfall and average snow / day
-const calcAvgSnow = dataArray => {
+const calcAvgSnow = (dataArray, numberOfQueries) => {
     let totalSnow = dataArray.reduce((total, dayWeather) => {
         
         let hourReport = dayWeather.hourly.data
@@ -121,7 +123,7 @@ const calcAvgSnow = dataArray => {
         return total + daySnow
     }, 0)
     
-    let snowReport = {totalSnowfall: totalSnow, avgSnow: totalSnow / numberOfQueries, info: infoString}
+    let snowReport = {totalSnowfall: totalSnow, avgSnow: totalSnow / numberOfQueries, info: infoString(numberOfQueries)}
     return snowReport
 }
 

@@ -1,26 +1,48 @@
 const express = require('express')
 const router = express.Router()
 
-// rent?compare=[greater, less]&cutoff=[integer]
+const { check, validationResult } = require('express-validator');
 
-router.get('/', (req,res) => {
+
+router.get('/', [
+    check('compare', 'Invalid compare string').isIn(['greater', 'less']),
+    check('rent', 'Rent must be an integer').isInt(),
+    check('citycount', 'Citycount must be an integer').isInt(),
+    check('key', 'Invalid key value').equals(process.env.MY_KEY)
+], (req,res) => {
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()})
+    }
+
     let compare = req.query.compare
-    let cutoff = req.query.cutoff
-    req.query.compare === 'greater' ? compare = '>' : compare = '<'
+    let rent = req.query.rent
+    let citycount = req.query.citycount
+    compare === 'greater' ? compare = '>' : compare = '<'
 
-    db.any(`SELECT city, state, rent FROM cities WHERE rent ${compare}= $1 LIMIT 50`, [cutoff])
-    .then(cities => res.json(cities))
-    .catch(() => res.json({error: 'No cities matched your rent criteria'}))
+    db.any(`SELECT city, state, rent FROM cities WHERE rent ${compare}= $1 LIMIT ${citycount}`, [rent])
+    .then(cities => cities[0] ? res.json(cities) : res.json({errors: 'No cities matched your rent criteria'}))
+    .catch(() => res.json({errors: 'No cities matched your rent criteria'}))
 })
 
-router.get('/:city', (req,res) => {
-    let city = req.params.city
+// router.get('/:city', [
+//     check('city', 'Invalid city name').isString(),
+//     check('key', 'Invalid key value').equals(process.env.MY_KEY)
+// ], (req,res) => {
 
-    // leaving this .any() to account for multiple cities by the same name e.g. Springfield
-    db.any(`SELECT city, state, rent FROM cities WHERE LOWER(city) = LOWER($1)`, [city])
-    .then(cities => res.json(cities))
-    .catch(() => res.json({error: 'No cities matched your criteria'}))
-})
+//     const errors = validationResult(req)
+//     if (!errors.isEmpty()) {
+//         return res.status(400).json({errors: errors.array()})
+//     }
+
+//     let city = req.params.city
+
+//     // leaving this .any() to account for multiple cities by the same name e.g. Springfield
+//     db.any(`SELECT city, state, rent FROM cities WHERE LOWER(city) = LOWER($1)`, [city])
+//     .then(cities => cities[0] ? res.json(cities) : res.json({errors: 'No cities matched your search criteria'}))
+//     .catch(() => res.json({error: 'No cities matched your criteria'}))
+// })
 
 
 module.exports = router
