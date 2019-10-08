@@ -16,20 +16,20 @@
 
 
 
-1. **<code>inputs: </code></strong>
-2. <strong><code>{</code></strong>
-    1. <strong><code>city: "Houston",</code></strong>
-    2. <strong><code>state: "Tx",</code></strong>
-    3. <strong><code>date: "2019-02-04",</code></strong>
-    4. <strong><code>type: "Rain",</code></strong>
-    5. <strong><code>period: "Day"</code></strong>
-3. <strong><code>},</code></strong>
-4. <strong><code>report: </code></strong>
-5. <strong><code>{</code></strong>
-    6. <strong><code>totalRainfall: 0.12310000000000001,</code></strong>
-    7. <strong><code>avgRain: 0.024620000000000003,</code></strong>
-    8. <strong><code>info: "Averages are displayed in Fahrenheit (temperature), and inches (snow/rain). Average daily values are collected over the past 5 years, while average monthly values are based on the most recent occurrence of the specified month"</code></strong>
-6. <strong><code>}</code></strong>
+**<code>inputs: </code></strong>
+<strong><code>{</code></strong>
+    <strong><code>city: "Houston",</code></strong>
+    <strong><code>state: "Tx",</code></strong>
+    <strong><code>date: "2019-02-04",</code></strong>
+    <strong><code>type: "Rain",</code></strong>
+    <strong><code>period: "Day"</code></strong>
+<strong><code>},</code></strong>
+<strong><code>report: </code></strong>
+<strong><code>{</code></strong>
+    <strong><code>totalRainfall: 0.12310000000000001,</code></strong>
+    <strong><code>avgRain: 0.024620000000000003,</code></strong>
+    <strong><code>info: "Averages are displayed in Fahrenheit (temperature), and inches (snow/rain). Average daily values are collected over the past 5 years, while average monthly values are based on the most recent occurrence of the specified month"</code></strong>
+<strong><code>}</code></strong>
 
 
 ```
@@ -82,31 +82,31 @@ Private API Key (available on request)
 
 
 
-1. `{`
-    1. **<code>city: "Houston",</code></strong>
-    2. <strong><code>state: "TX",</code></strong>
-    3. <strong><code>rent: 1430</code></strong>
-2. <code>},</code>
-3. <code>{</code>
-    4. <strong><code>city: "Philadelphia",</code></strong>
-    5. <strong><code>state: "PA",</code></strong>
-    6. <strong><code>rent: 1212</code></strong>
-4. <code>},</code>
-5. <code>{</code>
-    7. <strong><code>city: "Phoenix",</code></strong>
-    8. <strong><code>state: "AZ",</code></strong>
-    9. <strong><code>rent: 1247</code></strong>
-6. <code>},</code>
-7. <code>{</code>
-    10. <strong><code>city: "Las Vegas",</code></strong>
-    11. <strong><code>state: "NV",</code></strong>
-    12. <strong><code>rent: 1239</code></strong>
-8. <code>},</code>
-9. <code>{</code>
-    13. <strong><code>city: "San Antonio",</code></strong>
-    14. <strong><code>state: "TX",</code></strong>
-    15. <strong><code>rent: 1250</code></strong>
-10. <code>}</code>
+`{`
+    **<code>city: "Houston",</code></strong>
+    <strong><code>state: "TX",</code></strong>
+    <strong><code>rent: 1430</code></strong>
+<code>},</code>
+<code>{</code>
+    <strong><code>city: "Philadelphia",</code></strong>
+    <strong><code>state: "PA",</code></strong>
+    <strong><code>rent: 1212</code></strong>
+<code>},</code>
+<code>{</code>
+    <strong><code>city: "Phoenix",</code></strong>
+    <strong><code>state: "AZ",</code></strong>
+    <strong><code>rent: 1247</code></strong>
+<code>},</code>
+<code>{</code>
+    <strong><code>city: "Las Vegas",</code></strong>
+    <strong><code>state: "NV",</code></strong>
+    <strong><code>rent: 1239</code></strong>
+<code>},</code>
+<code>{</code>
+    <strong><code>city: "San Antonio",</code></strong>
+    <strong><code>state: "TX",</code></strong>
+    <strong><code>rent: 1250</code></strong>
+<code>}</code>
 
 
 ```
@@ -155,25 +155,25 @@ Private API Key (available on request)
 
 
 
-1. **<code>{</code></strong>
-    1. <strong><code>city: "Houston",</code></strong>
-    2. <strong><code>state: "TX",</code></strong>
-    3. <strong><code>rent: 1430,</code></strong>
-    4. <strong><code>coords: </code></strong>
-    5. <strong><code>{</code></strong>
-        1. <strong><code>lat: 29.7604267,</code></strong>
-        2. <strong><code>lng: -95.3698028</code></strong>
-    6. <strong><code>},</code></strong>
-    7. <strong><code>weather: </code></strong>
-    8. <strong><code>{</code></strong>
-        3. <strong><code>date: "2019-02-04",</code></strong>
-        4. <strong><code>period: "day",</code></strong>
-        5. <strong><code>tempHi: 65.146,</code></strong>
-        6. <strong><code>tempLo: 52.864,</code></strong>
-        7. <strong><code>rain: null,</code></strong>
-        8. <strong><code>snow: null</code></strong>
-    9. <strong><code>}</code></strong>
-2. <strong><code>}</code></strong>
+**<code>{</code></strong>
+    <strong><code>city: "Houston",</code></strong>
+    <strong><code>state: "TX",</code></strong>
+    <strong><code>rent: 1430,</code></strong>
+    <strong><code>coords: </code></strong>
+    <strong><code>{</code></strong>
+        <strong><code>lat: 29.7604267,</code></strong>
+        <strong><code>lng: -95.3698028</code></strong>
+    <strong><code>},</code></strong>
+    <strong><code>weather: </code></strong>
+    <strong><code>{</code></strong>
+        <strong><code>date: "2019-02-04",</code></strong>
+        <strong><code>period: "day",</code></strong>
+        <strong><code>tempHi: 65.146,</code></strong>
+        <strong><code>tempLo: 52.864,</code></strong>
+        <strong><code>rain: null,</code></strong>
+        <strong><code>snow: null</code></strong>
+    <strong><code>}</code></strong>
+<strong><code>}</code></strong>
 
 
 ```
