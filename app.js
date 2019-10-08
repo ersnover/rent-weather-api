@@ -19,7 +19,7 @@ app.use('/combo', comboRouter)
 
 
 app.get('/', (req, res) => {
-    
+    res.send('Documentation can be found at https://github.com/ersnover/rent-weather-api')
 })
 
 
