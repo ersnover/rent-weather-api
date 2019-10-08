@@ -1,3 +1,6 @@
+**Live Link:**
+https://weather-rent-api.herokuapp.com
+
 **Weather String:**
 
 /weather/state/city?period=<month/day>&date=YYYY-MM-DD&datapoints=<integer>&type=<temp/rain/snow>&key=<API_KEY>
