@@ -83,7 +83,7 @@ Private API Key (available on request)
 
 
 `{`
-    **<code>city: "Houston",</code></strong>
+    <code>city: "Houston",</code></strong>
     <strong><code>state: "TX",</code></strong>
     <strong><code>rent: 1430</code></strong>
 <code>},</code>
@@ -155,7 +155,7 @@ Private API Key (available on request)
 
 
 
-**<code>{</code></strong>
+<code>{</code></strong>
     <strong><code>city: "Houston",</code></strong>
     <strong><code>state: "TX",</code></strong>
     <strong><code>rent: 1430,</code></strong>
