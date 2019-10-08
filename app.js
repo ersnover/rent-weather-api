@@ -5,7 +5,7 @@ app.use(express.json());
 require('dotenv').config();
 
 const pgp = require('pg-promise')()
-const connectionString = 'postgres://dhailjzt:cpejuu89Zl02ft-FziiQhKkSv_iVNiKT@hansken.db.elephantsql.com:5432/dhailjzt'
+const connectionString = process.env.POSTGRES_STRING
 global.db = pgp(connectionString)
 
 // routes
