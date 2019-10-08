@@ -4,7 +4,7 @@
 
 **Example:**
 
-/weather/tx/houston?period=day&date=2019-02-04&datapoints=5&type=rain&key=<YOUR_API_KEY>
+https://weather-rent-api.herokuapp.com/weather/tx/houston?period=day&date=2019-02-04&datapoints=5&type=rain&key=<YOUR_API_KEY>
 
 **Returns:** 
 
@@ -70,7 +70,7 @@ Private API Key (available on request)
 
 **Example:**
 
-/rent?rent=1500&compare=less&citycount=5&key=bab811c0-2ee3-4213-85b3-12c617b12e21
+https://weather-rent-api.herokuapp.com/rent?rent=1500&compare=less&citycount=5&key=bab811c0-2ee3-4213-85b3-12c617b12e21
 
 **Returns:**
 
@@ -143,7 +143,7 @@ Private API Key (available on request)
 
 **Example:**
 
-/combo?rent=1800&rcompare=less&citycount=5&wcompare=greater&weather=tempLo&value=50&date=2019-02-04&period=day&datapoints=5&key=bab811c0-2ee3-4213-85b3-12c617b12e21
+https://weather-rent-api.herokuapp.com/combo?rent=1800&rcompare=less&citycount=5&wcompare=greater&weather=tempLo&value=50&date=2019-02-04&period=day&datapoints=5&key=bab811c0-2ee3-4213-85b3-12c617b12e21
 
 **returns:**
 
