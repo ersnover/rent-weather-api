@@ -53,8 +53,6 @@ router.get('/', [
 
             let datesArray = req.query.period === "day" ? wf.dayTypeArray(dateString, dataPoints) : wf.monthTypeArray(dateString, dataPoints)
 
-            console.log(datesArray)
-
             // get weather data
             let darkSkyData = await Promise.all(datesArray.map(date => wf.fetchDarkSky(city.coords, date)))
 
@@ -70,7 +68,6 @@ router.get('/', [
                 snow: req.query.period === 'month' ? wf.calcPrecipDays(darkSkyData, 'snow') : null
             }
         })
-        console.log(cities)
     } catch {
         res.status(500).json({errors: "External server error"})
     }

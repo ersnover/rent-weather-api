@@ -71,7 +71,6 @@ const calcAvgTemp = (dataArray, numberOfQueries) => {
         
         obj.totalHigh += dayWeather.daily.data[0].temperatureHigh
         obj.totalLow += dayWeather.daily.data[0].temperatureLow
-        console.log(obj)
         return obj
     }, {
         totalHigh: 0,
@@ -102,7 +101,11 @@ const calcAvgRain = (dataArray, numberOfQueries) => {
         return total + dayRain
     }, 0)
     
-    let rainReport = {totalRainfall: totalRain, avgRain: totalRain / numberOfQueries, info: infoString(numberOfQueries)}
+    let rainReport = {
+        totalRainfall: totalRain,
+        avgRain: totalRain / numberOfQueries,
+        info: infoString(numberOfQueries)
+    }
     return rainReport
 }
 
@@ -123,7 +126,11 @@ const calcAvgSnow = (dataArray, numberOfQueries) => {
         return total + daySnow
     }, 0)
     
-    let snowReport = {totalSnowfall: totalSnow, avgSnow: totalSnow / numberOfQueries, info: infoString(numberOfQueries)}
+    let snowReport = {
+        totalSnowfall: totalSnow,
+        avgSnow: totalSnow / numberOfQueries,
+        info: infoString(numberOfQueries)
+    }
     return snowReport
 }
 
